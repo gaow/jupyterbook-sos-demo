@@ -38,7 +38,7 @@ show_sidebar              : true  # Show the sidebar. Only set to false if your 
 collapse_inactive_chapters: false  # Whether to collapse the inactive chapters in the sidebar
 textbook_logo             : images/logo.svg  # A logo to be displayed at the top of your textbook sidebar
 textbook_logo_link        : https://github.com/gaow/jupyterbook-sos-demo  # A link for the logo.
-sidebar_footer_text       : 'Copyright (c) 2019 <br> <a href="http://home.uchicago.edu/gaow">Gao Wang</a><br>'
+sidebar_footer_text       : 'Copyright (c) 2019 <br> <a href="http://home.uchicago.edu/gaow">Gao Wang</a> and colleagues<br>'
 
 # Search settings
 search_max_words_in_content : 100  # In the search function, use at most this many words (too many words will make search slow)

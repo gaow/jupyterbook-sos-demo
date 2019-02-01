@@ -12,7 +12,7 @@
 # divider: true if this entry should just be rendered as a horizontal divider
 #   in the sidebar. All other values are ignored.
 
-- title: '<img src="/dsc-wiki/images/search.svg" alt="Search This Wiki">'
+- title: '<img src="/jupyterbook-sos-demo/images/search.svg" alt="Search This Wiki">'
   search: true
 - title: Home
   url: /README
@@ -25,12 +25,12 @@
   url: /finemapping/README
   not_numbered: true
   sections:
-  - title: Terminology
+  - title: Matching summary data and reference panel
     url: /finemapping/summary_statistics_wrangler
     not_numbered: true
-  - title: DSC configuration syntax
+  - title: Fine-mapping with summary data
     url: /finemapping/summary_statistics_finemapping
     not_numbered: true
-  - title: Running DSC
+  - title: Consolidating genome-wide results
     url: /finemapping/finemapping_results_wrangler
     not_numbered: true
