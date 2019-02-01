@@ -25,7 +25,7 @@
   url: /finemapping/README
   not_numbered: true
   sections:
-  - title: Matching summary data and reference panel
+  - title: Matching summary and reference data 
     url: /finemapping/summary_statistics_wrangler
     not_numbered: true
   - title: Fine-mapping with summary data
