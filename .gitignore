@@ -1,0 +1,6 @@
+**/.sos
+**/.ipynb_checkpoints
+**/.DS_store
+docs/__pycache__/*
+docs/content
+jupyter-book

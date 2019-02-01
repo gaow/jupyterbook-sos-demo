@@ -1,0 +1,81 @@
+#!/usr/bin/env sos-runner
+#fileformat=SOS1.0
+
+[global]
+parameter: template_repo = 'https://github.com/gaow/jupyter-book'
+notebooks = paths([x for x in glob.glob('src/*/[!_]*.ipynb')])
+
+[setup]
+bash: expand = True
+	rm -rf jupyter-book
+	git clone {template_repo}
+	rm -rf jupyter-book/.git
+	rm -rf jupyter-book/_build
+	rm -rf jupyter-book/_site
+	rm -rf jupyter-book/content
+sos_run('docker_image')
+
+[execute]
+bash: workdir = 'jupyter-book'
+	python scripts/execute_all_notebooks.py
+
+[clean]
+bash: workdir = 'jupyter-book'
+	python scripts/clean.py
+
+# Convert SoS notebooks to regular Python 3
+[build_10]
+depends: executable('rsync')
+bash:
+	mkdir -p jupyter-book/content
+	rsync -auz --delete src/* jupyter-book/content
+
+[build_11]
+input: notebooks, group_by = 1
+output: f"jupyter-book/content/{_input.relative_to('src')}"
+run(f'sos convert {_input} {_output} --kernel python3')
+
+[build_20]
+depends: Py_Module('nbclean')
+from sos.utils import env
+input: group_by = 'all'
+bash: workdir = 'jupyter-book', expand = True
+	cp ../cfg/toc.yml _data/
+	cp ../cfg/_config.yml _config.yml
+  	python scripts/license.py --path ./content
+	python scripts/generate_book.py {'--overwrite' if env.config['sig_mode'] == 'force' else ''}
+
+[build_21]
+# a hack for https://github.com/jupyter/jupyter-book/issues/72
+for x in notebooks:
+	x = path(f"jupyter-book/_build/{x.relative_to('src'):n}.md")
+	if x.is_file():
+		run(f'''sed -i 's/scope=col/scope="col"/g; s/scope=row/scope="row"/g' {x}''', stderr=False, stdout=False)
+
+[build_30]
+bash:  workdir = 'jupyter-book', container='jekyll-book'
+	rm -f Gemfile.lock
+	bundle exec jekyll build
+
+[build_40]
+bash: 
+	mkdir -p docs
+	rsync -auz --delete jupyter-book/_site/* docs/
+	rsync -auz --delete src/external docs/
+	rm -rf docs/tmp*
+	cp src/index.html docs/index.html
+	echo "Deployed to the docs/ folder"
+
+[serve]
+bash:  workdir = 'jupyter-book', container='jekyll-book'
+	bundle exec guard
+
+[docker_image]
+docker_build: workdir = 'jupyter-book', tag = 'jekyll-book'
+	FROM jekyll/jekyll:3.8.5
+	COPY Gemfile .
+	RUN apk --update add make gcc g++ libc-dev
+	RUN bundler install
+
+[default]
+sos_run('build')

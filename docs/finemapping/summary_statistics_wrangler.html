@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+
+  <title>Terminology</title>
+  <meta name="description" content="Summary statistics data mungling in preparation for fine-mapping pipelines">
+
+  <link rel="canonical" href="https://gaow.github.io/jupyterbook-sos-demo/finemapping/summary_statistics_wrangler.html">
+  <link rel="alternate" type="application/rss+xml" title="Gao's recipe" href="https://gaow.github.io/jupyterbook-sos-demo/feed.xml">
+
+  <meta property="og:url"         content="https://gaow.github.io/jupyterbook-sos-demo/finemapping/summary_statistics_wrangler.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Terminology" />
+<meta property="og:description" content="Summary statistics data mungling in preparation for fine-mapping pipelines" />
+<meta property="og:image"       content="" />
+
+
+  <script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage":
+    "https://gaow.github.io/jupyterbook-sos-demo/finemapping/summary_statistics_wrangler.html",
+  "headline":
+    "Terminology",
+  "datePublished":
+    "2019-02-01T09:55:11-06:00",
+  "dateModified":
+    "2019-02-01T09:55:11-06:00",
+  "description":
+    "Summary statistics data mungling in preparation for fine-mapping pipelines",
+  "author": {
+    "@type": "Person",
+    "name": "Gao Wang and others, Stephens Lab, The University of Chicago"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Data 100 at UC Berkeley",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://gaow.github.io/jupyterbook-sos-demo",
+      "width": 60,
+      "height": 60
+    }
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://gaow.github.io/jupyterbook-sos-demo",
+    "height": 60,
+    "width": 60
+  }
+}
+
+  </script>
+  <link rel="stylesheet" href="/jupyterbook-sos-demo/assets/css/styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css ">
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+
+  <!-- <link rel="manifest" href="/manifest.json"> -->
+  <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#efae0a"> -->
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#233947">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/jupyterbook-sos-demo/images/favicon.ico">
+
+  <!-- MathJax Config -->
+  <!-- Allow inline math using $ and automatically break long math lines -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true,
+        processEnvironments: true
+    },
+    CommonHTML: {
+        linebreaks: {
+            automatic: true,
+        },
+    },
+});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML' async></script>
+
+  <!-- DOM updating function -->
+  <script>
+const runWhenDOMLoaded = cb => {
+  if (document.readyState != 'loading') {
+    cb()
+  } else if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', cb)
+  } else {
+    document.attachEvent('onreadystatechange', function() {
+      if (document.readyState == 'complete') cb()
+    })
+  }
+}
+
+// Helper function to init things quickly
+initFunction = function(myfunc) {
+  runWhenDOMLoaded(myfunc);
+  document.addEventListener('turbolinks:load', myfunc);
+};
+</script>
+
+  <!-- Define some javascript variables that will be useful in other javascript -->
+  <script>
+    const site_basename = '/jupyterbook-sos-demo';
+  </script>
+
+  <!-- Add AnchorJS to let headers be linked -->
+  <script src="/jupyterbook-sos-demo/assets/js/anchor.min.js"  type="text/javascript"></script>
+  <script>
+
+initFunction(function () {
+    anchors.add("main h1, main h2, main h3, main h4")
+});
+
+</script>
+
+  <!-- Include Turbolinks to make page loads fast -->
+  <!-- https://github.com/turbolinks/turbolinks -->
+  <script src="/jupyterbook-sos-demo/assets/js/turbolinks.js" async></script>
+  <meta name="turbolinks-cache-control" content="no-cache">
+
+  <!-- Load nbinteract for widgets -->
+  <script src="https://unpkg.com/nbinteract-core" async></script>
+
+  <!-- Load Thebelab for interactive widgets -->
+  <!-- Include Thebelab for interactive code if it's enabled -->
+
+
+  <!-- Google analytics -->
+  <script src="/jupyterbook-sos-demo/assets/js/ga.js" async></script>
+
+  <!-- Clipboard copy button -->
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" async></script>
+
+  <!-- Load JS that depends on site variables -->
+  <script>
+/**
+ * Set up copy/paste for code blocks
+ */
+const codeCellId = index => `codecell${index}`
+
+const clipboardButton = id =>
+  `<a class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
+    <img src="/jupyterbook-sos-demo/assets/images/copy-button.svg" alt="Copy to clipboard">
+  </a>`
+
+// Clears selected text since ClipboardJS will select the text when copying
+const clearSelection = () => {
+  if (window.getSelection) {
+    window.getSelection().removeAllRanges()
+  } else if (document.selection) {
+    document.selection.empty()
+  }
+}
+
+// Changes tooltip text for two seconds, then changes it back
+const temporarilyChangeTooltip = (el, newText) => {
+  const oldText = el.getAttribute('data-tooltip')
+  el.setAttribute('data-tooltip', newText)
+  setTimeout(() => el.setAttribute('data-tooltip', oldText), 2000)
+}
+
+const addCopyButtonToCodeCells = () => {
+  // If ClipboardJS hasn't loaded, wait a bit and try again. This
+  // happens because we load ClipboardJS asynchronously.
+  if (window.ClipboardJS === undefined) {
+    setTimeout(addCopyButtonToCodeCells, 250)
+    return
+  }
+
+  const codeCells = document.querySelectorAll('.input_area pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    if (document.querySelector(`pre#${id} + a`) == null) {
+      codeCell.insertAdjacentHTML('afterend', clipboardButton(id));
+    }
+  })
+
+  const clipboard = new ClipboardJS('.copybtn')
+  clipboard.on('success', event => {
+    clearSelection()
+    temporarilyChangeTooltip(event.trigger, 'Copied!')
+  })
+
+  clipboard.on('error', event => {
+    temporarilyChangeTooltip(event.trigger, 'Failed to copy')
+  })
+
+  // Get rid of clipboard before the next page visit to avoid memory leak
+  document.addEventListener('turbolinks:before-visit', () =>
+    clipboard.destroy()
+  )
+}
+
+initFunction(addCopyButtonToCodeCells);
+</script>
+
+  <!-- Hide cell code -->
+  
+<script>
+/**
+Add buttons to hide code cells
+*/
+
+
+var setCodeCellVisibility = function(inputField, kind) {
+    // Update the image and class for hidden
+    var id = inputField.getAttribute('data-id');
+    var codeCell = document.querySelector(`#${id}`);
+
+    if (kind === "visible") {
+        codeCell.classList.remove('hidden');
+        inputField.checked = true;
+    } else {
+        codeCell.classList.add('hidden');
+        inputField.checked = false;
+    }
+}
+
+var toggleCodeCellVisibility = function (event) {
+    // The label is clicked, and now we decide what to do based on the input field's clicked status
+    if (event.target.tagName === "LABEL") {
+        var inputField = event.target.previousElementSibling;
+    } else {
+        // It is the span inside the target
+        var inputField = event.target.parentElement.previousElementSibling;
+    }
+
+    if (inputField.checked === true) {
+        setCodeCellVisibility(inputField, "visible");
+    } else {
+        setCodeCellVisibility(inputField, "hidden");
+    }
+}
+
+
+// Button constructor
+const hideCodeButton = id => `<input class="hidebtn" type="checkbox" id="hidebtn${id}" data-id="${id}"><label title="Toggle cell" for="hidebtn${id}" class="plusminus"><span class="pm_h"></span><span class="pm_v"></span></label>`
+
+var addHideButton = function () {
+  // If a hide button is already added, don't add another
+  if (document.querySelector('div.hidecode input') !== null) {
+      return;
+  }
+
+  // Find the input cells and add a hide button
+  document.querySelectorAll('div.input_area div.highlight').forEach(function (item, index) {
+    if (!item.parentElement.classList.contains("hidecode")) {
+        // Skip the cell if it doesn't have a hidecode class
+        return;
+    }
+
+    const id = codeCellId(index)
+    item.setAttribute('id', id);
+    item.insertAdjacentHTML('afterend', hideCodeButton(id))
+
+    // Set up the visibility toggle
+    hideLink = document.querySelector(`#${id} + input + label`);
+    hideLink.addEventListener('click', toggleCodeCellVisibility)
+  });
+}
+
+
+// Initialize the hide buttos
+var initHiddenCells = function () {
+    // Add hide buttons to the cells
+    addHideButton();
+
+    // Toggle the code cells that should be hidden
+    document.querySelectorAll('div.hidecode input').forEach(function (item) {
+        setCodeCellVisibility(item, 'hidden');
+        item.checked = true;
+    })
+}
+
+initFunction(initHiddenCells);
+
+</script>
+
+
+  <!-- Load custom website scripts -->
+  <script src="/jupyterbook-sos-demo/assets/js/scripts.js" async></script>
+
+  <!-- Load custom user CSS and JS  -->
+  <script src="/jupyterbook-sos-demo/assets/custom/custom.js" async></script>
+  <link rel="stylesheet" href="/jupyterbook-sos-demo/assets/custom/custom.css">
+
+  <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
+  
+
+  <!-- Lunr search code - will only be executed on the /search page -->
+  <script src="/jupyterbook-sos-demo/assets/js/lunr/lunr.min.js" type="text/javascript"></script>
+  <script>var initQuery = function() {
+  // See if we have a search box
+  var searchInput = document.querySelector('input#lunr_search');
+  if (searchInput === null) {
+    return;
+  }
+
+  // Function to parse our lunr cache
+  var idx = lunr(function () {
+    this.field('title')
+    this.field('excerpt')
+    this.field('categories')
+    this.field('tags')
+    this.ref('id')
+
+    this.pipeline.remove(lunr.trimmer)
+
+    for (var item in store) {
+      this.add({
+        title: store[item].title,
+        excerpt: store[item].excerpt,
+        categories: store[item].categories,
+        tags: store[item].tags,
+        id: item
+      })
+    }
+  });
+
+  // Run search upon keyup
+  searchInput.addEventListener('keyup', function () {
+    var resultdiv = document.querySelector('#results');
+    var query = document.querySelector("input#lunr_search").value.toLowerCase();
+    var result =
+      idx.query(function (q) {
+        query.split(lunr.tokenizer.separator).forEach(function (term) {
+          q.term(term, { boost: 100 })
+          if(query.lastIndexOf(" ") != query.length-1){
+            q.term(term, {  usePipeline: false, wildcard: lunr.Query.wildcard.TRAILING, boost: 10 })
+          }
+          if (term != ""){
+            q.term(term, {  usePipeline: false, editDistance: 1, boost: 1 })
+          }
+        })
+      });
+
+      // Empty the results div
+      while (resultdiv.firstChild) {
+        resultdiv.removeChild(resultdiv.firstChild);
+      }
+
+    resultdiv.insertAdjacentHTML('afterbegin', '<p class="results__found">'+result.length+' Result(s) found</p>');
+    for (var item in result) {
+      var ref = result[item].ref;
+      if(store[ref].teaser){
+        var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<div class="archive__item-teaser">'+
+                '<img src="'+store[ref].teaser+'" alt="">'+
+              '</div>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      else{
+    	  var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      resultdiv.insertAdjacentHTML('beforeend', searchitem);
+    }
+  });
+};
+
+initFunction(initQuery);
+</script>
+</head>
+
+  <body>
+    <!-- .js-show-sidebar shows sidebar by default -->
+    <div id="js-textbook" class="c-textbook js-show-sidebar">
+      
+
+
+
+<nav id="js-sidebar" class="c-textbook__sidebar">
+  <a href="https://github.com/gaow/jupyterbook-sos-demo"><img src="/jupyterbook-sos-demo/images/logo.png" class="textbook_logo" id="sidebar-logo" data-turbolinks-permanent/></a>
+  <h2 class="c-sidebar__title">Gao's recipe</h2>
+  <ul class="c-sidebar__chapters">
+    
+      
+      
+        <li class="c-sidebar__chapter"><a class="c-sidebar__entry" href="/jupyterbook-sos-demo/search.html"><img src="/dsc-wiki/images/search.svg" alt="Search This Wiki"></a></li>
+        
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/jupyterbook-sos-demo/README.html"
+        >
+          
+          Home
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+        <li class="c-sidebar__divider"></li>
+        
+      
+      
+        <li><h2 class="c-sidebar__title">Workflows</li>
+        
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/jupyterbook-sos-demo/finemapping/README.html"
+        >
+          
+          Genetic fine-mapping
+        </a>
+
+        
+
+          
+          
+          
+          
+
+          
+
+          <ul class="c-sidebar__sections ">
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry c-sidebar__entry--active"
+                  href="/jupyterbook-sos-demo/finemapping/summary_statistics_wrangler.html"
+                >
+                  
+                  Terminology
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/jupyterbook-sos-demo/finemapping/summary_statistics_finemapping.html"
+                >
+                  
+                  DSC configuration syntax
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/jupyterbook-sos-demo/finemapping/finemapping_results_wrangler.html"
+                >
+                  
+                  Running DSC
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+          </ul>
+        
+      </li>
+
+      
+    
+  </ul>
+  <p class="sidebar_footer">Copyright (c) 2019 <br> <a href="http://home.uchicago.edu/gaow">Gao Wang</a><br></p>
+</nav>
+
+      
+      <!-- Shamelessly copied from minimal mistakes -->
+
+
+<!-- TOC will only show up if it has at least one item -->
+
+
+  <aside class="sidebar__right">
+    <nav class="onthispage">
+      <header><h4 class="nav__title"><i class="fa fa-list"></i>   Contents</h4></header>
+      <ul class="toc__menu">
+  <li><a href="#input">Input</a></li>
+  <li><a href="#pitfalls-in-data-mungling-with-external-reference-panel">Pitfalls in data mungling with external reference panel</a></li>
+  <li><a href="#data-extraction-steps">Data extraction steps</a></li>
+  <li><a href="#outputs">Outputs</a></li>
+  <li><a href="#software-requirement">Software requirement</a></li>
+  <li><a href="#preparing-external-reference-genotypes">Preparing external reference genotypes</a></li>
+  <li><a href="#obtain-summary-statistics-data-set">Obtain summary statistics data-set</a></li>
+  <li><a href="#obtain-annotation-a_2">Obtain annotation $A_2$</a></li>
+  <li><a href="#run-preprocessing-pipeline">Run preprocessing pipeline</a></li>
+  <li><a href="#results-preview">Results preview</a>
+    <ul>
+      <li><a href="#reference-panel-matching-summary">Reference panel matching summary</a></li>
+      <li><a href="#summary-statistics-matrix-s3">Summary statistics matrix S3</a></li>
+      <li><a href="#annotationprior-matrix-a2">Annotation/prior matrix A2</a></li>
+      <li><a href="#𝑅-ld-matrix">𝑅: LD matrix</a></li>
+    </ul>
+  </li>
+</ul>
+    </nav>
+  </aside>
+
+
+      
+      <main class="c-textbook__page" tabindex="-1">
+          <div class="o-wrapper">
+            <div class="c-sidebar-toggle">
+  <!-- We show the sidebar by default so we use .is-active -->
+  <button
+    id="js-sidebar-toggle"
+    class="hamburger hamburger--arrowalt is-active"
+  >
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+    <span class="c-sidebar-toggle__label">Toggle Sidebar</span>
+  </button>
+</div>
+
+            
+<div class="buttons">
+
+
+
+
+</div>
+
+
+            <div class="c-textbook__content">
+              <h1 id="summary-statistics-data-mungling-in-preparation-for-fine-mapping-pipelines">Summary statistics data mungling in preparation for fine-mapping pipelines</h1>
+
+<p>This pipeline extracts loci of interest from association analysis summary statistics data, intersecting it with genotype data to compute correlation matrix, and output the data-set per loci with summary statistics and genotype correlations matched. Additionally it extracts prior inclusion probability (annotation scores) for each variant in the data-set, if the information is available.</p>
+
+<p>This pipeline was devised by Gao Wang and implemented by Min Qiao at The University of Chicago. It can be downloaded <a href="https://github.com/gaow/fine-mapping/tree/master/workflow">from here</a>.</p>
+
+<h2 id="input">Input</h2>
+
+<ul>
+  <li>Summary statistics file, <code class="highlighter-rouge">gzip</code> compressed, containing information of 6 or 7 columns of core information
+    <ul>
+      <li>chromsome</li>
+      <li>position</li>
+      <li>reference allele</li>
+      <li>alternative allele</li>
+      <li>[${\beta}$ (effect size) and standard error (se)] or $z$ score</li>
+    </ul>
+
+    <p>The input file does not have to follow this ordering. It can be specified by <code class="highlighter-rouge">--columns</code> parameter later. Additionally it is possible to input a column <code class="highlighter-rouge">loci ID</code> using <code class="highlighter-rouge">--loci-column</code>. It is relevant for QTL analysis where the same position can belong to different loci.</p>
+  </li>
+  <li>
+    <p>Loci file, similar in flavor to <code class="highlighter-rouge">bed</code> files.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1st column is chr; 2nd is chunk start position; 3rd is chunk end position; 4th is loci identifier.
+
+  chr22	44995308	46470495	1699
+  chr22	46470495	47596318	1700
+  chr22	47596318	48903703	1701
+  chr22	48903703	49824534	1702
+  chr22	49824534	51243298	1703
+</code></pre></div>    </div>
+
+    <p>If the last column is not available the first 3 columns will be concatenated to become the loci identifier.</p>
+
+    <p>Note that default data-base for loci can be, naturally, LD blocks. For example European genomes are typically divided into 1703 LD chunks (exclude X chromosome).</p>
+  </li>
+  <li>
+    <p>Prior inclusion probability, for example:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1st columns format “chr:bp:ref:alt”，2nd is prior
+
+  1:1847856:T:G  1.4413e-04
+  1:1847979:T:C  7.3716e-05
+  1:1848109:C:G  1.4413e-04
+  1:1848160:A:G  1.4413e-04
+  1:1848734:A:G  7.3716e-05
+</code></pre></div>    </div>
+
+    <p>This is the default format from the enrichment analysis tool called <code class="highlighter-rouge">torus</code>.</p>
+  </li>
+  <li>Genotype data reference panel (or panels if by chromosome), in VCF format. Ideally this is the genotype data used to generate the summary statistics; but external reference panel can also be used. 
+A popular choice is <a href="http://hgdownload.cse.ucsc.edu/gbdb/hg19/1000Genomes/phase3">1000 Genomes (data download)</a> for genotypes of 
+<a href="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/integrated_call_samples_v3.20130502.ALL.panel">different population (data download)</a>.
+    <ul>
+      <li>There are 503 Europeans (<code class="highlighter-rouge">EUR</code>) in 1000 Genomes data.</li>
+    </ul>
+
+    <p>For genotype in multiple VCF files the input have to be a ‘manifest’ file under the same directory with the VCF files and reads like:</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 ALL.chr1.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.EUR.vcf.gz
+2 ALL.chr2.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.EUR.vcf.gz
+...
+</code></pre></div>    </div>
+    <p>where each line is white-space separated with the first the chromosome number and second the file name.</p>
+
+    <p><strong>For UChicago midway users</strong>: reference genotype data for 1000 Genomes EUR samples are extracted using workflow <code class="highlighter-rouge">prepare_1KG_reference</code> below. The output can be found under <code class="highlighter-rouge">/project/mstephens/SuSIE_gtex_CPP/1KG_EUR</code>. The manifest file <code class="highlighter-rouge">1KG_EUR.manifest</code> was prepared by:</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for i in {1..22} X; do echo $i ALL.chr$i.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.EUR.vcf.gz; done &gt; 1KG_EUR.manifest
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>The end of this workflow notebook has some example commands running on some toy data. These toy data (500MB; did not bother to make it smaller due to my laziness) <a href="http://shiny.stephenslab.uchicago.edu/gaow/finemapping_summary_stats_example.tar.gz">can be downloaded from here</a> if you want to reproduce these commands.</p>
+
+<h2 id="pitfalls-in-data-mungling-with-external-reference-panel">Pitfalls in data mungling with external reference panel</h2>
+
+<ol>
+  <li>Genomic coordinate can be zero- or one-based. That means SNP positions can start from <strong>start from 0</strong>, instead of 1. This is indeed the case for 1000 Genomes data. In order to be consistent with one-based summary statistics, we need to <strong>add 1</strong> to all 1000 genome SNPs position.</li>
+  <li>Reference and alternative alleles may mismatch between summary statistics and the reference panel. If it is a simple ref / alt flip we need to also flip the coding of genotypes or sign of summary statistics to adjust for the effect size direction. If it is strand flip we need to convert summary statistics and genotype data to use the same strand first and take from there.</li>
+  <li>When strand flip is involved, cases such as A/T and C/G are no longer identifiable – whether it be strand flip or ref / alt flip. We will have to remove these locus (having A/T or C/G genotypes) from analysis.</li>
+</ol>
+
+<h2 id="data-extraction-steps">Data extraction steps</h2>
+
+<ol>
+  <li>Denote summary statistics matrix in the specific loci as $S_1$, and annotation (prior) matrix as $A_1$. The number of row in these two matrices is the number of SNPs in summary statistics of the study of interest.</li>
+  <li>Extract corresponding genotype from reference panel in VCF format for this loci. Denote this genotype matrix as $G_1$. Rows are SNPs, columns are population genotypes.
+    <ul>
+      <li>Genotype coding: we use numeric coding 0, 1 and 2 indicating the number of “non-reference allele”. In other words we have the following “mapping rule”:
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  0|0  -&gt;  0
+  1|0  -&gt;  1
+  1|1  -&gt;  2
+  2|0  -&gt;  1
+  2|1  -&gt;  2
+  2|2  -&gt;  2
+</code></pre></div>        </div>
+      </li>
+      <li>Non-variant sites (lines having identical genotypes for everybody) will be removed.</li>
+    </ul>
+  </li>
+  <li>Find overlapped SNPs of $S_1$ and $G_1$, then extract new genotype matrix from $G_1$ excluding non-overlaps, denote as $G_2$, and new summary statistics matrix from $S_1$ excluding non-overlaps, denote as $S_2$.</li>
+  <li>
+    <p>Compare $G_2$ and $S_2$’s reference and alternative allele, flip coding as necessary, generating new summay statistic matrix $S_3$ and new genotype matrix $G_3$. There could be several situations as follows:</p>
+
+    <ul>
+      <li>completely identical;</li>
+      <li>Not identical, but identical after switching ref and alt in $S_2$: add opposite sign for z score and beta; does not apply to <code class="highlighter-rouge">A/T</code>, <code class="highlighter-rouge">T/A</code>, <code class="highlighter-rouge">G/C</code> or <code class="highlighter-rouge">C/G</code> for <code class="highlighter-rouge">ref/alt</code>;</li>
+      <li>Not identical, but identical after strand flip ref and alt in $S_2$: keep the sign of z score and beta; does not apply to <code class="highlighter-rouge">A/T</code>, <code class="highlighter-rouge">T/A</code>, <code class="highlighter-rouge">G/C</code> or <code class="highlighter-rouge">C/G</code> for <code class="highlighter-rouge">ref/alt</code>;</li>
+      <li>Not identical, but identical after strand flip ref and alt then swith their positions: add opposite sign for z score and beta; only apply to <code class="highlighter-rouge">A/G</code>, <code class="highlighter-rouge">G/A</code>, <code class="highlighter-rouge">A/C</code>, <code class="highlighter-rouge">C/A</code>, <code class="highlighter-rouge">T/C</code>, <code class="highlighter-rouge">C/T</code>, <code class="highlighter-rouge">T/G</code> and <code class="highlighter-rouge">G/T</code>.</li>
+      <li>Not identical, <code class="highlighter-rouge">A/T</code>, <code class="highlighter-rouge">T/A</code>, <code class="highlighter-rouge">G/C</code> or <code class="highlighter-rouge">C/G</code> for <code class="highlighter-rouge">ref/alt</code>: consider this situation at last; if flip strand has applied in this LD block, then flip strand and keep the sign of z score and beta; if not, switch ref and alt of $S_2$, add opposite sign for z score and beta.</li>
+      <li>Not identical after previous 5 substeps: drop.</li>
+    </ul>
+  </li>
+  <li>Calculate row correlation matrix of $G_3$, denote as $R$. The number of rows and columns of $R$ is the number of SNPs in $G_3$.</li>
+  <li>Obtain overlapped SNPs for $S_3$ and $A_1$ and use overlapped SNPs to generate new annotation/prior $A_2$.</li>
+</ol>
+
+<p>Notice that if genotype data used to generate the summary statistics is available as reference panel, there should not be a need for 4. But it is a good double-check anyways to do 4 – we therefore provide an option to specify whether or not we expect step 4 is unnecessary; and if so, throw an error when we found discrepency in 4, instead of trying to fix those.</p>
+
+<h2 id="outputs">Outputs</h2>
+<ul>
+  <li>$S_3$: the number of rows of $S_3$ is the same with $A_2$. It can be 4 columns, <code class="highlighter-rouge">chr:pos  beta  se  ID</code>, or 3 columns, <code class="highlighter-rouge">chr:pos z ID</code>.</li>
+  <li>$R$: correlation matrix, #SNPs $\times$ #SNPs of $G_3$.</li>
+  <li>$A_2$: adjusted annotation/prior information, the number of rows is the same with $S_3$.</li>
+</ul>
+
+<h2 id="software-requirement">Software requirement</h2>
+
+<ul>
+  <li>Python package <code class="highlighter-rouge">cyvcf2</code>, <code class="highlighter-rouge">conda install -c bioconda cyvcf2</code></li>
+  <li><code class="highlighter-rouge">tabix</code> and <code class="highlighter-rouge">bcftools</code>, <code class="highlighter-rouge">conda install -c tabix bcftools</code></li>
+</ul>
+
+<div class="input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%cd ~/GIT/github/fine-mapping
+</code></pre></div></div>
+
+<div class="output output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/scratch/midway2/gaow/GIT/github/fine-mapping
+</code></pre></div></div>
+
+<div class="input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sos run workflow/summary_statistics_wrangler.ipynb -h
+</code></pre></div></div>
+
+<div class="output output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>usage: sos run workflow/summary_statistics_wrangler.ipynb
+               [workflow_name | -t targets] [options] [workflow_options]
+  workflow_name:        Single or combined workflows defined in this script
+  targets:              One or more targets to generate
+  options:              Single-hyphen sos parameters (see "sos run -h" for details)
+  workflow_options:     Double-hyphen workflow-specific parameters
+
+Workflows:
+  prepare_1KG_reference
+  default
+
+Global Workflow Options:
+  --reference . (as path)
+                        Reference panel, either VCF file or a manifest file each
+                        line is "chrom number &lt;white space&gt; VCF file name" the
+                        manifest file have to be in the same folder as the VCF
+                        files it refers to.
+  --loci . (as path)
+                        Loci file
+  --ss-data . (as path)
+                        summary statistics
+  --[no-]strand-flip (default to True)
+                        Use --no-strand-flip to set it to false if you are sure
+                        there is no strand_flip involved
+  --[no-]ref-flip (default to True)
+                        Use --no-ref-flip to set it to false if you are sure
+                        there is no reference / alternative mismatch involved
+  --job-size 80 (as int)
+                        For cluster jobs, number of loci to analyze per job
+
+Sections
+  prepare_1KG_reference: Get information about a specified race
+    Workflow Options:
+      --race EUR
+                        Race identifier in 1000 genomes
+      --panel-meta . (as path)
+                        Path to
+                        `integrated_call_samples_v3.20130502.ALL.panel.txt`
+  default_1:            Get summary stats
+    Workflow Options:
+      --columns 1 2 3 4 5 6 (as list)
+                        Have to be 5 or 6 numbers indicating the required
+                        columns to be extracted from summary statistics file 6
+                        numbers for ['chr','bp','ref','alt','beta','se'] 5
+                        numbers fo ['chr','bp','ref','alt','z']
+      --loci-column 0 (as int)
+                        ID column index, optional
+      --[no-]header (default to True)
+                        use --no-header to indicate that input summary
+                        statistics file does not have a header
+      --adjust-panel-position 0 (as int)
+                        when set to N (typically 0, 1 or -1) the genomic
+                        position in the panel will be adjusted by N, ie.
+                        position = position + N This is useful when summary
+                        stats and reference panel have different coordinates
+                        (off by 1 position)
+      --panel-chrom-prefix ''
+                        Either empty, or `chr`
+  default_2:            Get annotations
+    Workflow Options:
+      --annotation 'name:/path/to/annotation/file'
+
+</code></pre></div></div>
+
+<div class="input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[global]
+# Reference panel, either VCF file or a manifest file each line is "chrom number &lt;white space&gt; VCF file name"
+# the manifest file have to be in the same folder as the VCF files it refers to.
+parameter: reference = path()
+# Loci file
+parameter: loci = path()
+# summary statistics
+parameter: ss_data = path()
+# Use --no-strand-flip to set it to false
+# if you are sure there is no strand_flip involved
+parameter: strand_flip = True
+# Use --no-ref-flip to set it to false
+# if you are sure there is no reference / alternative mismatch involved
+parameter: ref_flip = True
+# For cluster jobs, number of loci to analyze per job
+parameter: job_size = 80
+
+# Decide whether or not reference panel matches summary statistics
+if not ref_flip and not strand_flip:
+    strictly_match = True
+else:
+    strictly_match = False
+
+# Check if files exist
+fail_if(not reference.is_file(), msg = 'Please specify valid path for --reference')
+fail_if(not loci.is_file(), msg = 'Please specify valid path for --loci')
+fail_if(not ss_data.is_file(), msg = 'Please specify valid path for --ss-data')
+</code></pre></div></div>
+
+<h2 id="preparing-external-reference-genotypes">Preparing external reference genotypes</h2>
+
+<p>For 1000 genomes data, using <code class="highlighter-rouge">integrated_call_samples_v3.20130502.ALL.panel.txt</code> file to extract sample ID for given population (eg <code class="highlighter-rouge">EUR</code>) and subset the data. We only need to run it once.</p>
+
+<p>If loci manifest is provided it generate both a new loci manifest file and the files it contains.</p>
+
+<p>Example usage:</p>
+
+<div class="input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sos run workflow/summary_statistics_wrangler.ipynb prepare_1KG_reference
+</code></pre></div></div>
+
+<div class="input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Get information about a specified race
+[prepare_1KG_reference]
+depends: executable("bcftools"), executable("tabix")
+# Race identifier in 1000 genomes
+parameter: race = "EUR"
+# Path to `integrated_call_samples_v3.20130502.ALL.panel.txt`
+parameter: panel_meta = path()
+stop_if(not panel_meta.is_file(), msg = 'Please specify valid path for --panel-meta')
+
+if str(reference).endswith('vcf.gz'):
+    chroms = ['0']
+    genotypes = [reference]
+else:
+    manifest = [x.strip().split() for x in open(f'{reference:a}').readlines()]
+    meta = [x[0] for x in manifest]
+    genotypes = [x[1] for x in manifest]
+
+input: genotypes, group_by = 1, paired_with = dict(chrom=chroms)
+output: f"{_input:nn}.{race}.vcf.gz"
+task: trunk_workers = 1, trunk_size = 1, walltime = '5m', mem = '2G', cores = 1, tags = f'{step_name}_{_output:bn}'
+
+bash: expand = True
+    grep -w "{race}" {panel_meta} | cut -f 1 &gt; {_output:nn}_extracted.txt
+    bcftools view -S {_output:nn}_extracted.txt {_input} -Oz &gt; {_output}
+    tabix -p vcf {_output}
+    rm {_output:nn}_extracted.txt
+
+if not str(reference).endswith('vcf.gz'):
+    with open(f"{reference:n}.{race}.{reference:x}", 'w') as f:
+        for item in _output:
+            f.write(f'{item.chrom} {item}')
+</code></pre></div></div>
+
+<h2 id="obtain-summary-statistics-data-set">Obtain summary statistics data-set</h2>
+
+<ol>
+  <li>Obtain reference genotypes for given loci: matrix $G1$</li>
+  <li>Obtain summary statistics and the matching genotype correlation for given loci</li>
+</ol>
+
+<p>For step 2, we obtain genotype matrix 𝐺2, summary statistics 𝑆2, compare ref/alt in 𝑆2 and 𝐺2 =&gt; 𝑆3 and 𝐺3, then calculate 𝑅=row_corr(𝐺3) and save to disk.</p>
+
+<div class="input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Get summary stats
+[default_1 (get summary statistics)]
+depends: Py_Module('cyvcf2')
+# Have to be 5 or 6 numbers indicating the required columns
+# to be extracted from summary statistics file
+# 6 numbers for ['chr','bp','ref','alt','beta','se']
+# 5 numbers fo ['chr','bp','ref','alt','z']
+parameter: columns = [1,2,3,4,5,6]
+# ID column index, optional
+parameter: loci_column = 0
+# use --no-header to indicate that input summary statistics file does not have a header
+parameter: header = True
+# when set to N (typically 0, 1 or -1) the genomic position
+# in the panel will be adjusted by N, ie. position = position + N
+# This is useful when summary stats and reference panel have different coordinates (off by 1 position)
+parameter: adjust_panel_position = 1
+# Either empty, or `chr`
+parameter: panel_chrom_prefix = ''
+
+fail_if(len(columns) not in (5,6), msg = 'Input column ID has to be of length 5 or 6.')
+
+if str(reference).endswith('vcf.gz'):
+    genotype = reference
+else:
+    genotype = dict([tuple(x.strip().split()) for x in open(f'{reference:a}').readlines()])
+    for k in genotype:
+        genotype[k] = os.path.join(f'{reference:ad}', genotype[k])
+chunks = [x.strip().split() for x in open(f'{loci:a}').readlines() if x.strip() and not x.strip().startswith('#')]
+prefix = paths([f"{ss_data:n}/{c[-1] if len(c) &gt; 3 else '%s_%s_%s' % (c[0], c[1], c[2])}" for c in chunks])
+    
+input: for_each = 'chunks'
+output: summary_stats = f"{prefix[_index]}/{prefix[_index]:b}.summary_stats.gz",
+        ld_matrix = f"{prefix[_index]}/{prefix[_index]:b}.LD.gz"
+        
+task: trunk_workers = 1, trunk_size = job_size, walltime = '5m', mem = '5G', cores = 1, tags = f'{step_name}_{_output["summary_stats"]:bn}'
+
+python3: expand = "${ }", stdout = f'{_output["summary_stats"]:nn}.allele_flip.log'
+    from cyvcf2 import VCF
+    import pandas as pd, numpy as np
+    import datetime, sys
+
+    def exit_if_empty(x):
+        is_empty = (len(x) == 0) if isinstance(x, list) else x.empty
+        if is_empty:
+            open("${_output['summary_stats']}", 'w').close()
+            open("${_output['ld_matrix']}", 'w').close()
+            sys.exit(0)
+
+    # Step 1: extract relevant summary statistics
+    print(datetime.datetime.now(),"\n")
+    locus = ${_chunks}
+    col_to_use = ${[x-1 for x in columns]}
+    loci_col = ${loci_column}
+    if loci_col &gt; 0:
+        col_to_use.append(loci_col-1)
+    col_ranks = [x for x in sorted(range(len(col_to_use)), key=col_to_use.__getitem__)]
+    S1 = pd.read_table(${ss_data:ar}, compression='gzip', header = ${0 if header else None}, index_col=False, usecols = col_to_use)
+    if loci_col &gt; 0:
+        columns = ['chr','bp','ref','alt','beta','se','locus_id'] if S1.shape[1] == 7 else ['chr','bp','ref','alt','z','locus_id']
+    else:
+        columns = ['chr','bp','ref','alt','beta','se'] if S1.shape[1] == 6 else ['chr','bp','ref','alt','z']
+    S1.columns = [columns[r] for r in col_ranks]
+    S1 = S1[columns]
+    S1["chr"] = S1["chr"].apply(lambda x: str(x).replace("chr", ""))
+    locus[0] = str(locus[0]).replace("chr", "")
+    if "locus_id" in S1.columns and len(locus) == 4:
+        S1 = S1[(S1["chr"] == locus[0]) &amp; (S1["bp"] &gt;= int(locus[1])) &amp; (S1["bp"] &lt; int(locus[2])) &amp; (S1["locus_id"] == locus[3])]
+    else:
+        S1 = S1[(S1["chr"] == locus[0]) &amp; (S1["bp"] &gt;= int(locus[1])) &amp; (S1["bp"] &lt; int(locus[2]))]
+    exit_if_empty(S1)
+    print("SAMPLE: %s\tLENGTH:%d" % ("S1",len(S1)))
+    S1["ID"] = S1["chr"] + ":" + S1["bp"].astype(str)
+
+    # Step 2: get genotypes
+    chromosome = '${panel_chrom_prefix}'+'${_chunks[0].replace("chr","")}'
+    panel = ${path(genotype[_chunks[0].replace("chr","")] if isinstance(genotype, dict) else genotype):ar}
+    # loci region
+    queryid = chromosome + ":" + "${_chunks[1]}" + "-" + "${_chunks[2]}"
+    off_set = ${adjust_panel_position}
+    # scan VCF chunk
+    vcf = VCF(panel, gts012=False)
+    res = []
+    n_G0 = 0
+    var_ids = set(S1["ID"].tolist())
+    ## Attention: 1000 Genome position start from 0, not 1! So need to set off_set=1 for variant.start
+    for variant in vcf(queryid):
+        n_G0 += 1
+        var_id = f'{variant.CHROM.replace("chr","")}:{variant.start+off_set}'
+        if var_id not in var_ids:
+            continue
+        for i in range(len(variant.ALT)):
+            line = [var_id, variant.REF, variant.ALT[i]] + \
+                    [x[:-1].count(i+1) for x in variant.genotypes]
+            if len(set(line[3:])) == 1:
+                # remove non-variant site in reference panel
+                continue
+            res.append(line)
+    print("SAMPLE: %s\tLENGTH:%d" % ("G0",n_G0))
+    exit_if_empty(res)
+    G1 = pd.DataFrame(res, columns = ['ID', 'ref', 'alt'] + vcf.samples)
+    print("SAMPLE: %s\tLENGTH:%d" % ("G1",len(G1)))
+
+    # Step 3: overlap genotypes and summary statistics for LD matrix
+    # S2
+    # have to drop duplicates in S2 because in some files there are duplicates!
+    S2 = S1[S1["ID"].isin(G1["ID"])].drop_duplicates()
+    exit_if_empty(S2)
+    #S2["ID"] = S2["ID"].fillna
+    
+    print("SAMPLE: %s\tLENGTH:%d" % ("S2",len(S2)))
+    # 𝐺2
+    # have to drop duplicates in S2 because for some reason there are duplicates in reference panel
+    G2 = G1[G1["ID"].isin(S1["ID"])].drop_duplicates()
+    exit_if_empty(G2)
+    print("SAMPLE: %s\tLENGTH:%d" % ("G2",len(G2)))
+    # 𝑆2 and 𝐺2 : reference and alternative
+    # at ta cg gc
+    def gt(s1,s2,s3,s4):
+        if (s1+s2 == "AT" and s3+s4 == "TA") or (s1+s2 == "GC" and s3+s4 == "CG" ) or (s1+s2 == "TA" and s3+s4 == "AT") or (s1+s2 == "CG" and s3+s4 == "GC"):
+            return ${0 if strand_flip else 1}
+        else:
+            return 1
+    # flip
+    def atcg(inp):
+        if inp == "A":
+            return "T"
+        elif inp == "T":
+            return "A"
+        elif inp == "G":
+            return "C"
+        elif inp == "C":
+            return "G"
+    # S3
+    FLIPD = []
+    # adjusted
+    ADJ = 0
+    # equal
+    EQUAL = 0
+    # flipped by strand 
+    FLIPNUM = 0
+    # flipped by reference and alternative
+    REFALTNUM = 0
+    
+    # keep at/ta/cg/gc line numbers
+    at_cg_id = []
+    for i in range(len(S2)):
+        old_id = S2.iloc[i,0] + ":" + str(S2.iloc[i,1]) + ":" + S2.iloc[i,2] + ":" + S2.iloc[i,3]
+        line = S2.iloc[i,:-1].tolist() + [old_id]
+        G2S2 = G2[G2["ID"]==S2.iloc[i,-1]]
+        if all([set([S2.iloc[i,2],S2.iloc[i,3]]) != set([G2S2["ref"].iloc[idx], G2S2["alt"].iloc[idx]]) for idx in range(G2S2.shape[0])]):
+            ADJ += 1
+        for idx in range(G2S2.shape[0]):
+            # not at/ta/gc/cg
+            if gt(S2.iloc[i,2],S2.iloc[i,3],G2S2["ref"].iloc[idx],G2S2["alt"].iloc[idx])==1:
+                if G2S2["ref"].iloc[idx] == S2.iloc[i,2] and G2S2["alt"].iloc[idx] == S2.iloc[i,3]:
+                    EQUAL+=1
+                    FLIPD.append(line)
+                elif G2S2["alt"].iloc[idx] == S2.iloc[i,2] and G2S2["ref"].iloc[idx] == S2.iloc[i,3]:
+                    REFALTNUM+=1
+                    line[2], line[3] = line[3], line[2]
+                    line[4] = -line[4]
+                    FLIPD.append(line)
+                elif atcg(S2.iloc[i,2]) == G2S2["ref"].iloc[idx] and atcg(S2.iloc[i,3]) == G2S2["alt"].iloc[idx]:
+                    FLIPNUM+=1
+                    line[2], line[3] = atcg(line[2]), atcg(line[3])
+                    FLIPD.append(line)
+                elif atcg(S2.iloc[i,2]) == G2S2["alt"].iloc[idx] and atcg(S2.iloc[i,3]) == G2S2["ref"].iloc[idx]:
+                    REFALTNUM+=1
+                    FLIPNUM+=1
+                    line[2], line[3] = atcg(line[3]), atcg(line[2])
+                    line[4] = -line[4]
+                    FLIPD.append(line)
+                else:
+                    # not sure what to do yet
+                    # print(1, line)
+                    pass
+            # at/ta/cg/gc only do ref/alt flip
+            elif gt(S2.iloc[i,2],S2.iloc[i,3],G2S2["ref"].iloc[idx],G2S2["alt"].iloc[idx])==0:
+                if G2S2["ref"].iloc[idx] == S2.iloc[i,2] and G2S2["alt"].iloc[idx] == S2.iloc[i,3]:
+                    EQUAL+=1
+                    FLIPD.append(line)
+                    at_cg_id.append(len(FLIPD) - 1)
+                elif G2S2["alt"].iloc[idx] == S2.iloc[i,2] and G2S2["ref"].iloc[idx] == S2.iloc[i,3]:
+                    REFALTNUM+=1
+                    line[2], line[3] = line[3], line[2]
+                    line[4] = -line[4]                
+                    FLIPD.append(line)
+                    at_cg_id.append(len(FLIPD) - 1)
+                else:
+                    # print(0, line)
+                    pass
+    if ${strictly_match} and (FLIPNUM &gt; 0 or REFALTNUM &gt; 0):
+        raise ValueError(f"Strict panel match failed for locus {locus}.")
+    #
+    MISMATCH = len(S2) - len(FLIPD)
+    if FLIPNUM &gt; 0:
+        # flips involved, we need to remove at/ta/cg/gc
+        FLIPD = [i for j, i in enumerate(FLIPD) if j not in at_cg_id]
+    else:
+        at_cg_id = []
+    columns = [x for x in S1.columns.tolist() if x != 'ID'] + ["original_ID"]
+    S3 = pd.DataFrame(FLIPD, columns=columns)
+    S3["ID"] = S3["chr"] +":"+S3["bp"].astype(str) + ":" + S3["ref"] + ":" + S3["alt"]
+    G2["ID"] = G2[['ID', 'ref', 'alt']].apply(lambda x: ':'.join(x), axis=1)
+    # 𝐺3
+    G3 = G2[G2["ID"].isin(S3["ID"])]
+    assert G3.shape[0] == S3.shape[0]
+    exit_if_empty(S3)
+    # recover original ID
+    S3["ID"] = S3.pop("original_ID")
+    S3 = S3.sort_values(by = ["chr", "bp"]).drop(columns = [x for x in S3.columns if not x in ('ID', 'z', 'beta', 'se')])
+    columns = S3.columns.tolist()
+    columns.insert(0, columns.pop(columns.index('ID')))
+    S3[columns].to_csv("${_output['summary_stats']}",sep="\t",index=False,header=None, compression = 'gzip')
+    print("SAMPLE: %s\tLENGTH:%d" % ("S3",len(S3)))
+    print("equal:%s\nflipped by strand:%d\nflipped by reference and alternative:%d\ntotal adjusted:%d\ntotal mismatch:%d\ntotal A/T and C/G removed:%d" % (EQUAL,FLIPNUM,REFALTNUM,ADJ,MISMATCH,len(at_cg_id)))
+    # 𝑅=row_corr(𝐺3) OUT
+    np.savetxt("${_output['ld_matrix']}", np.corrcoef(G3.drop(columns=['ID', "ref","alt"]).values) if G3.shape[0] &gt; 1 else np.array([[1]]), fmt = '%.5f')
+</code></pre></div></div>
+
+<h2 id="obtain-annotation-a_2">Obtain annotation $A_2$</h2>
+
+<div class="input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Get annotations
+[default_2 (get annotations)]
+parameter: annotation = "name:/path/to/annotation/file"
+anno, prior_file = annotation.split(':')
+prior_file = path(prior_file)
+stop_if(not prior_file.is_file(), msg = 'Quit because annotation file is not found')
+output: f"{_input['summary_stats']:nn}.{anno}.gz"
+skip_if(_input['summary_stats'].stat().st_size == 0 or _input['ld_matrix'].stat().st_size == 0)
+
+task: trunk_workers = 1, trunk_size = job_size, walltime = '10m', mem = '2G', cores = 1, tags = f'{step_name}_{_output:bn}'
+
+python3: expand="${ }"
+    import pandas as pd
+    A1 = pd.read_table("${prior_file}", compression='gzip', sep="\s+", header=None)
+    A1.columns = ["ID","VALUE"]
+    S3 = pd.read_table("${_input['summary_stats']}",sep="\t", header=None, compression='gzip')
+    # have to drop duplicates in A2 because in some files there are duplicates!
+    A2 = A1[A1["ID"].isin(S3.iloc[:,0])][["ID","VALUE"]].drop_duplicates()
+    if set(S3.iloc[:,0]) != set(A2["ID"]):
+        raise ValueError("SNPs in summary statistics and annotation are not identical.")
+    else:
+        A2 = A2.set_index("ID")
+        A2 = A2.reindex(S3.iloc[:,0])
+        A2 = A2.reset_index()
+    A2.to_csv("${_output}",sep="\t",index=False,header=None, compression='gzip')
+</code></pre></div></div>
+
+<h2 id="run-preprocessing-pipeline">Run preprocessing pipeline</h2>
+
+<p>eQTL data example run:</p>
+
+<div class="input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sos run workflow/summary_statistics_wrangler.ipynb --reference /home/gaow/tmp/19-Dec-2018/1KG_EUR/test.manifest \
+        --loci /home/gaow/tmp/19-Dec-2018/metasoft/one_loci.txt \
+        --ss-data /home/gaow/tmp/19-Dec-2018/metasoft/gtex_metasoft_summary_stats.gz \
+        --columns 1 2 3 4 6 7 --loci-column 5 --no-header \
+        -q none -j 8
+</code></pre></div></div>
+
+<p>GWAS data example run (with annotations)</p>
+
+<div class="input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sos run workflow/summary_statistics_wrangler.ipynb --reference /home/gaow/tmp/19-Dec-2018/1KG_EUR/test.manifest \
+        --loci /home/gaow/tmp/19-Dec-2018/SCZ/chunks.list \
+        --ss-data /home/gaow/tmp/19-Dec-2018/SCZ/Summary_statistics.gz \
+        --columns 1 2 3 4 6 7 --adjust-panel-position 1 \
+        --annotation atac-seq:/home/gaow/tmp/19-Dec-2018/SCZ/Annotation_atac-seq.gz \
+        -q none -j 8
+</code></pre></div></div>
+
+<p><strong>For UChicago midway users</strong>: to run these pipelines on RCC cluster, please take a look at <code class="highlighter-rouge">midway2.yml</code> file (found in this repository), modify it as you see fit, and replace <code class="highlighter-rouge">-q none -j 8</code> with:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-c workflow/midway2.yml -q midway2 -J 40
+</code></pre></div></div>
+
+<h2 id="results-preview">Results preview</h2>
+
+<h3 id="reference-panel-matching-summary">Reference panel matching summary</h3>
+
+<div class="input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%preview /home/gaow/tmp/19-Dec-2018/SCZ/Summary_statistics/chr9_84630941_84813641/chr9_84630941_84813641.allele_flip.log -n --limit 20
+</code></pre></div></div>
+
+<div class="output output_html">
+<div class="sos_hint">%preview /home/gaow/tmp/19-Dec-2018/SCZ/Summary_statistics/chr9_84630941_84813641.allele_flip.log</div>
+</div>
+
+<div class="output output_html">
+<div class="sos_hint">&gt; /home/gaow/tmp/19-Dec-2018/SCZ/Summary_statistics/chr9_84630941_84813641.allele_flip.log (271 B):</div>
+</div>
+
+<div class="output output_html">
+<div class="sos_hint">13 lines</div>
+</div>
+
+<div class="output output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2018-12-21 12:48:22.194216 
+
+SAMPLE: S1	LENGTH:184
+SAMPLE: G1	LENGTH:1034
+SAMPLE: S2	LENGTH:182
+SAMPLE: G2	LENGTH:182
+SAMPLE: S3	LENGTH:182
+equal:94
+flipped by strand:0
+flipped by reference and alternative:88
+total adjusted:0
+total mismatch:0
+total A/T and C/G removed:0
+</code></pre></div></div>
+
+<h3 id="summary-statistics-matrix-s3">Summary statistics matrix S3</h3>
+
+<div class="input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%preview /home/gaow/tmp/19-Dec-2018/SCZ/Summary_statistics/chr9_84630941_84813641/chr9_84630941_84813641.summary_stats.txt -n -l 10
+</code></pre></div></div>
+
+<div class="output output_html">
+<div class="sos_hint">%preview /home/gaow/tmp/19-Dec-2018/SCZ/Summary_statistics/chr9_84630941_84813641.summary_stats.txt</div>
+</div>
+
+<div class="output output_html">
+<div class="sos_hint">&gt; /home/gaow/tmp/19-Dec-2018/SCZ/Summary_statistics/chr9_84630941_84813641.summary_stats.txt (6.0 KiB):</div>
+</div>
+
+<div class="output output_html">
+<div class="sos_hint">182 lines (10 displayed, see --limit)</div>
+</div>
+
+<div class="output output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>9:84631606:A:G	-0.024303	0.0176
+9:84632950:A:G	0.021595	0.0174
+9:84635599:A:G	-0.0587	0.0555
+9:84636858:A:T	0.011901	0.025
+9:84636881:A:G	0.022104	0.0174
+9:84638794:T:C	-0.038596	0.0337
+9:84638880:A:C	-0.121004	0.0643
+9:84639829:A:G	-0.058703	0.0558
+9:84640522:A:G	0.024605000000000002	0.0175
+9:84640717:T:C	-0.046501999999999995	0.0345
+</code></pre></div></div>
+
+<h3 id="annotationprior-matrix-a2">Annotation/prior matrix A2</h3>
+
+<div class="input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%preview /home/gaow/tmp/19-Dec-2018/SCZ/Summary_statistics/chr9_84630941_84813641/chr9_84630941_84813641.Annotation_atac-seq.txt -n -l 10
+</code></pre></div></div>
+
+<div class="output output_html">
+<div class="sos_hint">%preview /home/gaow/tmp/19-Dec-2018/SCZ/Summary_statistics/chr9_84630941_84813641.Annotation_atac-seq.txt</div>
+</div>
+
+<div class="output output_html">
+<div class="sos_hint">&gt; /home/gaow/tmp/19-Dec-2018/SCZ/Summary_statistics/chr9_84630941_84813641.Annotation_atac-seq.txt (4.6 KiB):</div>
+</div>
+
+<div class="output output_html">
+<div class="sos_hint">182 lines (10 displayed, see --limit)</div>
+</div>
+
+<div class="output output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>9:84631606:A:G	7.3588e-05
+9:84632950:A:G	7.3588e-05
+9:84635599:A:G	7.3588e-05
+9:84636858:A:T	7.3588e-05
+9:84636881:A:G	7.3588e-05
+9:84638794:T:C	7.3588e-05
+9:84638880:A:C	7.3588e-05
+9:84639829:A:G	0.00023664
+9:84640522:A:G	7.3588e-05
+9:84640717:T:C	7.3588e-05
+</code></pre></div></div>
+
+<h3 id="𝑅-ld-matrix">𝑅: LD matrix</h3>
+
+<div class="input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import pandas as pd
+pd.read_table('/home/gaow/tmp/19-Dec-2018/SCZ/Summary_statistics/chr9_84630941_84813641/chr9_84630941_84813641.LD.txt', sep = ' ', header = None, nrows = 5)
+</code></pre></div></div>
+
+<div class="output output_html">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>172</th>
+      <th>173</th>
+      <th>174</th>
+      <th>175</th>
+      <th>176</th>
+      <th>177</th>
+      <th>178</th>
+      <th>179</th>
+      <th>180</th>
+      <th>181</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.00000</td>
+      <td>-0.16511</td>
+      <td>-0.08450</td>
+      <td>-0.05728</td>
+      <td>-0.16511</td>
+      <td>-0.09862</td>
+      <td>0.26204</td>
+      <td>-0.08450</td>
+      <td>-0.16958</td>
+      <td>-0.09553</td>
+      <td>...</td>
+      <td>0.19386</td>
+      <td>0.23134</td>
+      <td>0.28432</td>
+      <td>-0.09078</td>
+      <td>-0.13401</td>
+      <td>-0.06267</td>
+      <td>0.17942</td>
+      <td>-0.13495</td>
+      <td>0.22525</td>
+      <td>0.36580</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.16511</td>
+      <td>1.00000</td>
+      <td>0.35094</td>
+      <td>-0.12045</td>
+      <td>1.00000</td>
+      <td>-0.08884</td>
+      <td>-0.05748</td>
+      <td>0.35094</td>
+      <td>0.99163</td>
+      <td>-0.08591</td>
+      <td>...</td>
+      <td>-0.08443</td>
+      <td>0.00125</td>
+      <td>-0.02916</td>
+      <td>0.70175</td>
+      <td>-0.08891</td>
+      <td>0.29019</td>
+      <td>0.00745</td>
+      <td>-0.07106</td>
+      <td>-0.12696</td>
+      <td>-0.04784</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.08450</td>
+      <td>0.35094</td>
+      <td>1.00000</td>
+      <td>-0.06756</td>
+      <td>0.35094</td>
+      <td>-0.05645</td>
+      <td>-0.02924</td>
+      <td>1.00000</td>
+      <td>0.35389</td>
+      <td>-0.05572</td>
+      <td>...</td>
+      <td>-0.11853</td>
+      <td>0.27991</td>
+      <td>-0.02222</td>
+      <td>-0.02840</td>
+      <td>-0.04367</td>
+      <td>0.04285</td>
+      <td>0.29319</td>
+      <td>0.00498</td>
+      <td>-0.04503</td>
+      <td>-0.04552</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.05728</td>
+      <td>-0.12045</td>
+      <td>-0.06756</td>
+      <td>1.00000</td>
+      <td>-0.12045</td>
+      <td>-0.00022</td>
+      <td>-0.05648</td>
+      <td>-0.06756</td>
+      <td>-0.11798</td>
+      <td>-0.01960</td>
+      <td>...</td>
+      <td>-0.19109</td>
+      <td>-0.01319</td>
+      <td>0.00848</td>
+      <td>-0.08558</td>
+      <td>-0.08434</td>
+      <td>-0.01702</td>
+      <td>-0.01805</td>
+      <td>-0.06870</td>
+      <td>0.00707</td>
+      <td>-0.08792</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.16511</td>
+      <td>1.00000</td>
+      <td>0.35094</td>
+      <td>-0.12045</td>
+      <td>1.00000</td>
+      <td>-0.08884</td>
+      <td>-0.05748</td>
+      <td>0.35094</td>
+      <td>0.99163</td>
+      <td>-0.08591</td>
+      <td>...</td>
+      <td>-0.08443</td>
+      <td>0.00125</td>
+      <td>-0.02916</td>
+      <td>0.70175</td>
+      <td>-0.08891</td>
+      <td>0.29019</td>
+      <td>0.00745</td>
+      <td>-0.07106</td>
+      <td>-0.12696</td>
+      <td>-0.04784</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 182 columns</p>
+</div>
+</div>
+
+
+              <nav class="c-page__nav">
+  
+    
+    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/jupyterbook-sos-demo/finemapping/README">
+      〈 <span class="u-margin-right-tiny"></span> Genetic fine-mapping
+    </a>
+  
+
+  
+    
+    <a id="js-page__nav__next" class="c-page__nav__next" href="/jupyterbook-sos-demo/finemapping/summary_statistics_finemapping">
+      DSC configuration syntax <span class="u-margin-right-tiny"></span> 〉
+    </a>
+  
+</nav>
+
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+  </body>
+</html>
